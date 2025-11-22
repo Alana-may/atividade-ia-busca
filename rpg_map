@@ -61,3 +61,29 @@ try:
     print(f"SUCESSO! Passos: {len(caminho)} | Custo (Esforço): {custo_total}")
 except nx.NetworkXNoPath:
     print("O mapa gerado bloqueou o caminho totalmente. Tente novamente.")
+plt.figure(figsize=(10, 10))
+pos = {node: node for node in G.nodes()}
+
+nos_grama = [n for n in G.nodes() if tipo_terreno[n] == 'grama']
+nos_floresta = [n for n in G.nodes() if tipo_terreno[n] == 'floresta']
+nos_agua = [n for n in G.nodes() if tipo_terreno[n] == 'agua']
+
+nx.draw_networkx_nodes(G, pos, nodelist=nos_grama, node_size=60, node_color='lightgreen', label='Grama (1)')
+nx.draw_networkx_nodes(G, pos, nodelist=nos_floresta, node_size=60, node_color='darkgreen', label='Floresta (5)')
+nx.draw_networkx_nodes(G, pos, nodelist=nos_agua, node_size=60, node_color='blue', label='Água (20)')
+
+nx.draw_networkx_nodes(G, pos, nodelist=[inicio], node_size=300, node_color='white', edgecolors='black', label='Início')
+nx.draw_networkx_nodes(G, pos, nodelist=[objetivo], node_size=300, node_color='black', label='Objetivo')
+
+if caminho:
+    
+    arestas_caminho = list(zip(caminho, caminho[1:]))
+    nx.draw_networkx_edges(G, pos, edgelist=arestas_caminho, edge_color='red', width=4, label='Rota A*')
+
+plt.title(f"A* em Mapa RPG Aleatório\nCusto Total: {custo_total}")
+plt.legend(loc='upper left', framealpha=0.9)
+plt.axis('off')
+
+plt.savefig("mapa_rpg_final.png", dpi=300)
+print("\nImagem salva como 'mapa_rpg_final.png'.")
+plt.show()
