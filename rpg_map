@@ -30,3 +30,21 @@ for node in G.nodes():
         tipo_terreno[node] = 'agua'
     else:
         tipo_terreno[node] = 'muro'
+
+nos_para_remover = []
+
+for node in G.nodes():
+    terreno = tipo_terreno[node]
+    
+    if terreno == 'muro':
+        nos_para_remover.append(node)
+    else:
+        peso = CUSTO_GRAMA
+        if terreno == 'floresta': peso = CUSTO_FLORESTA
+        elif terreno == 'agua': peso = CUSTO_AGUA
+        
+        
+        for vizinho in G.neighbors(node):
+            G[node][vizinho]['weight'] = peso
+
+G.remove_nodes_from(nos_para_remover)
