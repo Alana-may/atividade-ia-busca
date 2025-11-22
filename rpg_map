@@ -1,0 +1,15 @@
+import networkx as nx
+import matplotlib.pyplot as plt
+import random
+
+TAMANHO = 20  # Grid 20x20
+
+CUSTO_GRAMA = 1
+CUSTO_FLORESTA = 5
+CUSTO_AGUA = 20  # Muito caro, o A* vai evitar ao máximo
+
+print(f"Gerando mundo RPG {TAMANHO}x{TAMANHO}...")
+
+G = nx.grid_2d_graph(TAMANHO, TAMANHO)
+inicio = (0, 0)
+objetivo = (TAMANHO - 1, TAMANHO - 1)
