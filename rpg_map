@@ -17,10 +17,11 @@ objetivo = (TAMANHO - 1, TAMANHO - 1)
 tipo_terreno = {} 
 
 for node in G.nodes():
-    
     if node == inicio or node == objetivo:
         tipo_terreno[node] = 'grama'
         continue
+
+    sorteio = random.random()
     
     if sorteio < 0.60:
         tipo_terreno[node] = 'grama'
@@ -42,7 +43,6 @@ for node in G.nodes():
         peso = CUSTO_GRAMA
         if terreno == 'floresta': peso = CUSTO_FLORESTA
         elif terreno == 'agua': peso = CUSTO_AGUA
-        
         
         for vizinho in G.neighbors(node):
             G[node][vizinho]['weight'] = peso
