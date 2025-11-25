@@ -42,3 +42,13 @@ Certifique-se de ter o Python instalado. Instale as bibliotecas necessárias:
 
 ```bash
 pip install networkx matplotlib
+```
+
+---
+
+## 🎥 Demonstração em Vídeo
+Confira a explicação detalhada do código e a demonstração de execução no link abaixo:
+
+```bash
+https://youtu.be/nOWXQHti6Qc
+```
